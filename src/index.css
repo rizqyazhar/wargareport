@@ -152,6 +152,22 @@ body {
   mask-size: cover;
 }
 
+@utility edit-icon {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-bg-primary);
+  mask: url("./assets/icon/edit-icon.svg") no-repeat center;
+  mask-size: cover;
+}
+
+@utility white-plus-icon {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-font-quaternary);
+  mask: url("./assets/icon/plus-icon.svg") no-repeat center;
+  mask-size: cover;
+}
+
 @utility white-shield-icon {
   width: 14px;
   height: 14px;

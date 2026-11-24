@@ -22,6 +22,7 @@ import SecurityPage from "./Pages/SecurityPage";
 import AdminLayout from "./layouts/AdminLayout";
 import EscalationDesk from "./Pages/admin/EscalationDesk";
 import SlaBenchmarks from "./Pages/admin/SlaBenchmarks";
+import Categories from "./Pages/admin/Categories";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,7 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to={"/admin/escalation-desk"} /> },
       { path: "escalation-desk", element: <EscalationDesk /> },
       { path: "sla-benchmarks", element: <SlaBenchmarks /> },
+      { path: "categories", element: <Categories /> },
     ],
   },
 ]);
