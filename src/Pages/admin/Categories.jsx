@@ -2,7 +2,9 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 export default function Categories() {
-  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showAddCatModal, setShowAddCatModal] = useState(false);
+  const [showEditCatModal, setShowEditCatModal] = useState(false);
+
   return (
     <>
       <div className='flex flex-col gap-7.5'>
@@ -18,8 +20,9 @@ export default function Categories() {
           </div>
           <div className='flex flex-col-reverse'>
             <button
+              onClick={() => setShowAddCatModal((prev) => !prev)}
               type='button'
-              className='px-3.25 py-1.75 flex items-center gap-1.5 justify-center rounded-full bg-bg-primary border border-bg-primary'>
+              className='px-3.25 py-1.75 flex items-center gap-1.5 justify-center rounded-full bg-bg-primary border border-bg-primary cursor-pointer'>
               <span className='white-plus-icon'></span>
               <span className='text-xs font-publicSans font-semibold text-font-quaternary'>
                 Add category
@@ -43,7 +46,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75 cursor-pointer'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -62,7 +68,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -83,7 +92,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -104,7 +116,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -125,7 +140,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -146,7 +164,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 1 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -167,7 +188,10 @@ export default function Categories() {
               <span className='text-[11px] text-font-primary font-normal'>
                 0 report
               </span>
-              <button className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
+              <button
+                onClick={() => setShowEditCatModal((prev) => !prev)}
+                type='button'
+                className='text-[13px] text-bg-primary font-semibold flex items-center gap-1.75'>
                 <span className='edit-icon'></span>
                 Edit
               </button>
@@ -175,19 +199,19 @@ export default function Categories() {
           </div>
         </div>
       </div>
-      {showReviewModal && (
+      {showAddCatModal && (
         <div className='absolute top-0 inset-0 z-30 w-full min-h-dvh bg-[rgba(19,35,27,0.55)]'>
           <div className='fixed w-3/4 md:w-1/3 h-screen top-0 right-0 bg-white flex flex-col'>
             <div className='px-5.5 pt-7.5 pb-5.75 bg-bg-submitted border-b border-border-primary flex justify-between'>
               <div className='flex flex-col gap-1'>
                 <span className='eyebrow-heading text-[11px] text-font-tertiary'>
-                  Escalation Desk
+                  New Category
                 </span>
-                <h3 className='title text-[17px]'>Verify incoming report</h3>
+                <h3 className='title text-[17px]'>Create routing category</h3>
               </div>
               <div>
                 <button
-                  onClick={() => setShowReviewModal((prev) => !prev)}
+                  onClick={() => setShowAddCatModal((prev) => !prev)}
                   type='button'
                   className='cursor-pointer'>
                   <IoClose className='size-5 text-font-secondary' />
@@ -195,76 +219,27 @@ export default function Categories() {
               </div>
             </div>
             <div className='p-5.5 flex flex-col gap-3.5 overflow-y-auto scrollbar-thin'>
-              <div className='w-full p-3.75 bg-bg-submitted border border-dashed border-border-secondary rounded-xl flex flex-col gap-2.25'>
-                <span className='eyebrow-heading text-[13px] text-bg-primary'>
-                  CMP-2026-8601
-                </span>
-                <h4 className='font-publicSans font-semibold text-base text-font-primary'>
-                  Heavy excavation equipment operating past 22:00 WIB in
-                  residential alley
-                </h4>
-                <p className='font-publicSans text-[13px] text-font-secondary font-normal'>
-                  Continuous hydraulic jackhammer and pile driver activity past
-                  22:00 WIB at commercial construction site behind Jl. Senopati
-                  No. 18. Violates peaceful night hours under Perda No. 8/2007.
-                </p>
-                <p className='font-ibmPlexMono text-[13px] font-normal text-font-tertiary'>
-                  Jl. Senopati No. 18, RT 06 / RW 02 · Selong, Kebayoran Baru,
-                  Jakarta Selatan
-                </p>
-                <p className='font-ibmPlexMono text-[13px] font-normal text-font-tertiary'>
-                  Reported by an anonymous resident
-                </p>
-                <p className='font-ibmPlexMono text-[13px] font-normal text-font-tertiary'>
-                  1 evidence file · submitted Nov 20, 07:09 AM GMT+7
-                </p>
-                <button
-                  type='button'
-                  className='w-fit flex flex-col items-start cursor-pointer'>
-                  <span className='font-publicSans font-semibold text-[13px] text-bg-primary'>
-                    Open full case record
-                  </span>
-                  <span className='text-[13px] text-bg-primary'>&rarr;</span>
-                </button>
-              </div>
-              <div className='px-5.75 py-3 bg-inherit border border-border-primary rounded-xl text-xs font-semibold font-publicSans text-font-secondary'>
-                Review attached evidence (1)
-              </div>
               <form className='flex flex-col gap-5 pb-10'>
                 <div className='flex flex-col gap-3.5'>
                   <div className='w-full flex flex-col gap-1.5'>
-                    <label htmlFor='category-options' className='w-fit'>
+                    <label htmlFor='category-name' className='w-fit'>
                       <span className='eyebrow-heading text-[10px] text-font-secondary'>
-                        Category
+                        Category Name
                       </span>
                     </label>
-                    <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
-                      <select
-                        name='category'
-                        id='category-options'
-                        className='w-full h-full outline-none bg-inherit font-publicSans text-[13px] text-font-primary'>
-                        <option value='Noise & Disturbance'>
-                          Noise & Disturbance
-                        </option>
-                        <option value='Roads & Transit'>Roads & Transit</option>
-                        <option value='Water & Sewage'>Water & Sewage</option>
-                        <option value='Street Lighting'>Street Lighting</option>
-                        <option value='Sanitation & Waste'>
-                          Sanitation & Waste
-                        </option>
-                        <option value='Public Parks & Trees'>
-                          Public Parks & Trees
-                        </option>
-                        <option value='Building & Zoning'>
-                          Building & Zoning
-                        </option>
-                      </select>
+                    <div className='flex items-center py-2 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <input
+                        type='text'
+                        name='category-name'
+                        id='category-name'
+                        className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none'
+                      />
                     </div>
                   </div>
                   <div className='w-full flex flex-col gap-1.5'>
                     <label htmlFor='agencies-options' className='w-fit'>
                       <span className='eyebrow-heading text-[10px] text-font-secondary'>
-                        Route to agency
+                        Responsible Agency
                       </span>
                     </label>
                     <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
@@ -298,20 +273,158 @@ export default function Categories() {
                   </div>
                   <div className='w-full grid grid-cols-2 gap-3'>
                     <div className='w-full flex flex-col gap-1.5'>
-                      <label htmlFor='priority-options' className='w-fit'>
+                      <label htmlFor='sla-hours' className='w-fit'>
                         <span className='eyebrow-heading text-[10px] text-font-secondary'>
-                          Priority
+                          SLA window (hours)
+                        </span>
+                      </label>
+                      <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                        <input
+                          type='number'
+                          name='sla-hours'
+                          id='sla-hours'
+                          className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none'
+                        />
+                      </div>
+                    </div>
+                    <div className='w-full flex flex-col gap-1.5'>
+                      <label htmlFor='icon-options' className='w-fit'>
+                        <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                          Icon
                         </span>
                       </label>
                       <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
                         <select
-                          name='priority'
-                          id='priority-options'
+                          name='icon'
+                          id='icon-options'
                           className='w-full h-full outline-none bg-inherit font-publicSans text-[13px] text-font-primary'>
-                          <option value='Standard'>Standard</option>
+                          <option value='general'>General</option>
                         </select>
                       </div>
                     </div>
+                  </div>
+                  <div className='w-full flex flex-col gap-1.5'>
+                    <label htmlFor='citizen-facing-label' className='w-fit'>
+                      <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                        Citizen-Facing Label
+                      </span>
+                    </label>
+                    <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <input
+                        type='text'
+                        name='citizen-facing-label'
+                        id='citizen-facing-label'
+                        placeholder='e.g. Pothole / Sidewalk'
+                        className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none'
+                      />
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col gap-1.5'>
+                    <label htmlFor='citizen-hint' className='w-fit'>
+                      <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                        Citizen Hint
+                      </span>
+                    </label>
+                    <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <textarea
+                        name='citizen-hint'
+                        id='citizen-hint'
+                        className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none resize-none'
+                        placeholder='Short examples shown on the filing wizard'></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div className='w-full flex justify-end items-center gap-2 border-t border-border-primary pt-4.5'>
+                  <button
+                    onClick={() => setShowAddCatModal((prev) => !prev)}
+                    type='button'
+                    className='px-3.75 py-2 bg-inherit border border-border-secondary rounded-full font-publicSans font-semibold text-xs text-font-primary cursor-pointer hover:bg-border-secondary'>
+                    Cancel
+                  </button>
+                  <button
+                    type='button'
+                    className='px-3.75 py-2 bg-bg-primary border border-bg-pribg-bg-primary rounded-full font-publicSans font-semibold text-xs text-font-quaternary cursor-pointer hover:opacity-90'>
+                    Create Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+      {showEditCatModal && (
+        <div className='absolute top-0 inset-0 z-30 w-full min-h-dvh bg-[rgba(19,35,27,0.55)]'>
+          <div className='fixed w-3/4 md:w-1/3 h-screen top-0 right-0 bg-white flex flex-col'>
+            <div className='px-5.5 pt-7.5 pb-5.75 bg-bg-submitted border-b border-border-primary flex justify-between'>
+              <div className='flex flex-col gap-1'>
+                <span className='eyebrow-heading text-[11px] text-font-tertiary'>
+                  Edit Category
+                </span>
+                <h3 className='title text-[17px]'>Roads & Transit</h3>
+              </div>
+              <div>
+                <button
+                  onClick={() => setShowEditCatModal((prev) => !prev)}
+                  type='button'
+                  className='cursor-pointer'>
+                  <IoClose className='size-5 text-font-secondary' />
+                </button>
+              </div>
+            </div>
+            <div className='p-5.5 flex flex-col gap-3.5 overflow-y-auto scrollbar-thin'>
+              <form className='flex flex-col gap-5 pb-10'>
+                <div className='flex flex-col gap-3.5'>
+                  <div className='w-full flex flex-col gap-1.5'>
+                    <label htmlFor='category-name' className='w-fit'>
+                      <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                        Category Name
+                      </span>
+                    </label>
+                    <div className='flex items-center py-2 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <input
+                        type='text'
+                        name='category-name'
+                        id='category-name'
+                        className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none'
+                      />
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col gap-1.5'>
+                    <label htmlFor='agencies-options' className='w-fit'>
+                      <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                        Responsible Agency
+                      </span>
+                    </label>
+                    <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <select
+                        name='agencies'
+                        id='agencies-options'
+                        className='w-full h-full outline-none bg-inherit font-publicSans text-[13px] text-font-primary'>
+                        <option value='Satpol PP Provinsi DKI Jakarta (Public Order)'>
+                          Satpol PP Provinsi DKI Jakarta (Public Order)
+                        </option>
+                        <option value='Dinas Bina Marga DKI Jakarta (Roads & Sidewalks)'>
+                          Dinas Bina Marga DKI Jakarta (Roads & Sidewalks)
+                        </option>
+                        <option value='Perumda PAM JAYA (Clean Drinking Water)'>
+                          Perumda PAM JAYA (Clean Drinking Water)
+                        </option>
+                        <option value='Dinas Perhubungan DKI Jakarta (PJU & Traffic)'>
+                          Dinas Perhubungan DKI Jakarta (PJU & Traffic)
+                        </option>
+                        <option value='Dinas Lingkungan Hidup DKI Jakarta (Waste & Rivers)'>
+                          Dinas Lingkungan Hidup DKI Jakarta (Waste & Rivers)
+                        </option>
+                        <option value='Dinas Pertamanan dan Hutan Kota DKI Jakarta'>
+                          Dinas Pertamanan dan Hutan Kota DKI Jakarta
+                        </option>
+                        <option value='Dinas Cipta Karya, Tata Ruang & Pertanahan (Citata)'>
+                          Dinas Cipta Karya, Tata Ruang & Pertanahan (Citata)
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className='w-full grid grid-cols-2 gap-3'>
                     <div className='w-full flex flex-col gap-1.5'>
                       <label htmlFor='sla-hours' className='w-fit'>
                         <span className='eyebrow-heading text-[10px] text-font-secondary'>
@@ -327,41 +440,64 @@ export default function Categories() {
                         />
                       </div>
                     </div>
+                    <div className='w-full flex flex-col gap-1.5'>
+                      <label htmlFor='icon-options' className='w-fit'>
+                        <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                          Icon
+                        </span>
+                      </label>
+                      <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                        <select
+                          name='icon'
+                          id='icon-options'
+                          className='w-full h-full outline-none bg-inherit font-publicSans text-[13px] text-font-primary'>
+                          <option value='general'>General</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                   <div className='w-full flex flex-col gap-1.5'>
-                    <label htmlFor='audit-note' className='w-fit'>
+                    <label htmlFor='citizen-facing-label' className='w-fit'>
                       <span className='eyebrow-heading text-[10px] text-font-secondary'>
-                        Routing / audit note
+                        Citizen-Facing Label
+                      </span>
+                    </label>
+                    <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
+                      <input
+                        type='text'
+                        name='citizen-facing-label'
+                        id='citizen-facing-label'
+                        placeholder='e.g. Pothole / Sidewalk'
+                        className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none'
+                      />
+                    </div>
+                  </div>
+                  <div className='w-full flex flex-col gap-1.5'>
+                    <label htmlFor='citizen-hint' className='w-fit'>
+                      <span className='eyebrow-heading text-[10px] text-font-secondary'>
+                        Citizen Hint
                       </span>
                     </label>
                     <div className='flex items-center py-2.75 px-3.5 rounded-xl border border-border-secondary focus-within:border focus-within:border-font-secondary focus-within:shadow-[0px_0px_0px_2px_rgba(15,107,79,0.13)]'>
                       <textarea
-                        name='audit-note'
-                        id='audit-note'
+                        name='citizen-hint'
+                        id='citizen-hint'
                         className='w-full h-full border-none outline-none bg-inherit font-publicSans text-[13px] text-font-primary appearance-none resize-none'
-                        placeholder='Evidence check, priority override, or reason for 
-rejection…'></textarea>
+                        placeholder='Short examples shown on the filing wizard'></textarea>
                     </div>
-                    <small className='text-[10px] font-publicSans font-normal text-font-tertiary'>
-                      Required when rejecting. Saved to the public audit trail.
-                    </small>
                   </div>
                 </div>
                 <div className='w-full flex justify-end items-center gap-2 border-t border-border-primary pt-4.5'>
                   <button
+                    onClick={() => setShowEditCatModal((prev) => !prev)}
                     type='button'
                     className='px-3.75 py-2 bg-inherit border border-border-secondary rounded-full font-publicSans font-semibold text-xs text-font-primary cursor-pointer hover:bg-border-secondary'>
                     Cancel
                   </button>
                   <button
                     type='button'
-                    className='px-3.75 py-2 bg-font-warning border border-font-warning rounded-full font-publicSans font-semibold text-xs text-font-quaternary cursor-pointer hover:opacity-90'>
-                    Reject report
-                  </button>
-                  <button
-                    type='button'
                     className='px-3.75 py-2 bg-bg-primary border border-bg-pribg-bg-primary rounded-full font-publicSans font-semibold text-xs text-font-quaternary cursor-pointer hover:opacity-90'>
-                    Verify & route
+                    Save Changes
                   </button>
                 </div>
               </form>
