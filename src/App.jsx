@@ -24,6 +24,7 @@ import EscalationDesk from "./Pages/admin/EscalationDesk";
 import SlaBenchmarks from "./Pages/admin/SlaBenchmarks";
 import Categories from "./Pages/admin/Categories";
 import Agencies from "./Pages/admin/Agencies";
+import OfficerAccountManages from "./Pages/admin/OfficerAccountManages";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
       { path: "sla-benchmarks", element: <SlaBenchmarks /> },
       { path: "categories", element: <Categories /> },
       { path: "agencies", element: <Agencies /> },
+      { path: "officer-accounts", element: <OfficerAccountManages /> },
     ],
   },
 ]);
