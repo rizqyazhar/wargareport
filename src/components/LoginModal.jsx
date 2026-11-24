@@ -1,10 +1,11 @@
 import AuthLayout from "../layouts/AuthLayout";
 import Button from "../components/Button";
-import { useEffect, useState, useContext } from "react";
+import { useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { GetTokenContext } from "../contexts/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserLogin } from "../redux/slices/auth/login.slice.js";
 
 const schema = yup.object({
   email: yup.string().email("Email tidak valid").required("Email harus diisi"),
@@ -12,15 +13,9 @@ const schema = yup.object({
 });
 
 export default function LoginModal(props) {
-  const [getData] = useState(
-    JSON.parse(window.localStorage.getItem("user-account")),
-  );
+  const dispatch = useDispatch();
 
-  const [token, setToken] = useContext(GetTokenContext);
-
-  const findAccount = (email) => {
-    return getData?.find((item) => item.email === email);
-  };
+  const reduxAccountsState = useSelector((state) => state.accounts);
 
   const { setOpenLoginModal, setOpenRegisterModal } = props;
   const [showPassword, setShowPassword] = useState(false);
@@ -48,22 +43,29 @@ export default function LoginModal(props) {
   };
 
   const handleLoginForm = (data) => {
-    const account = findAccount(data.email);
+    if (!data) return window.alert("Login Failed");
 
-    if (!account)
-      return console.log("akun belom ada, harap register terlebih dahulu");
+    const findAccount = reduxAccountsState.find(
+      (item) => item.email === data.email,
+    );
 
-    if (!(account?.email === data.email && account?.password === data.password))
-      return console.log("email atau password salah");
+    const emailAccount = findAccount?.email;
+    const passwordAccount = findAccount?.password;
 
-    setToken(account.email);
-    reset();
-  };
+    if (
+      emailAccount !== data.email ||
+      window.atob(passwordAccount) !== data.password
+    ) {
+      return window.alert("Email or password is incorrect");
+    }
 
-  useEffect(() => {
-    window.localStorage.setItem("token", JSON.stringify(token));
+    dispatch(addUserLogin(emailAccount));
+    window.alert("Login success");
+
     setOpenLoginModal((prev) => !prev);
-  }, [token, setOpenLoginModal]);
+    reset();
+    return;
+  };
 
   return (
     <AuthLayout>

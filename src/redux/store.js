@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import registerReducer from "./slices/auth/register.slice.js";
+import loginReducer from "./slices/auth/login.slice";
 import {
   FLUSH,
   PAUSE,
@@ -20,12 +21,13 @@ const storage = {
 
 const rootReducer = combineReducers({
   accounts: registerReducer,
+  userLogin: loginReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["accounts"],
+  whitelist: ["accounts", "userLogin"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
