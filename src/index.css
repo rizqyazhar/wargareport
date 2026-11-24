@@ -1007,7 +1007,7 @@ body {
 .table-container {
   width: 100%;
   border-radius: 16px;
-  overflow: hidden;
+  overflow-y: auto;
   @media (width <= 768px) {
     overflow-x: auto;
   }
