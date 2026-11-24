@@ -5,8 +5,6 @@ import TrackPage from "./Pages/TrackPage";
 import HelpPage from "./Pages/HelpPage";
 import LiveFeedPage from "./Pages/LiveFeedPage";
 import DetailReportPage from "./Pages/DetailReportPage";
-import { GetTokenContext } from "./contexts/AuthContext";
-import { useState } from "react";
 import AddReportLayout from "./layouts/AddReportLayout";
 import TopicReportPage from "./Pages/TopicReportPage";
 import LocationReportPage from "./Pages/LocationReportPage";
@@ -26,6 +24,10 @@ import Categories from "./Pages/admin/Categories";
 import Agencies from "./Pages/admin/Agencies";
 import OfficerAccountManages from "./Pages/admin/OfficerAccountManages";
 import Moderation from "./Pages/admin/Moderation";
+import { Provider } from "react-redux";
+
+import reduxStore, { persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -91,13 +93,11 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  const [token, setToken] = useState(
-    window.localStorage.getItem("token") || "",
-  );
-
   return (
-    <GetTokenContext.Provider value={[token, setToken]}>
-      <RouterProvider router={router} />
-    </GetTokenContext.Provider>
+    <Provider store={reduxStore}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   );
 }

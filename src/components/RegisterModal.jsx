@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import AuthLayout from "../layouts/AuthLayout";
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { createAccount } from "../redux/slices/auth/register.slice";
 
 const schema = yup.object({
   fullname: yup.string().required("Nama harus diisi"),
@@ -14,10 +16,11 @@ const schema = yup.object({
   password: yup.string().required("Password harus diisi"),
 });
 
+const newId = Math.floor(Math.random() * Date.now());
+
 export default function RegisterModal(props) {
-  const [userData, setUserData] = useState(
-    JSON.parse(window.localStorage.getItem("user-account")) || [],
-  );
+  const dispatch = useDispatch();
+  const reduxAccountsState = useSelector((state) => state.accounts);
 
   const {
     register,
@@ -49,19 +52,33 @@ export default function RegisterModal(props) {
   };
 
   const pushData = (data) => {
-    console.log(data);
-    const saveData = data;
-    setUserData((prev) => [...prev, saveData]);
-    console.log(userData);
+    if (!data) return window.alert("Register Failed");
+    const emailHasBeenUsed = reduxAccountsState?.find(
+      (item) => item.email === data.email,
+    );
 
+    if (emailHasBeenUsed)
+      return window.alert("This account has already been used");
+
+    const passwordEncoded = btoa(data.password);
+    dispatch(
+      createAccount({
+        id: newId,
+        fullname: data.fullname,
+        email: data.email,
+        contact: data.contact,
+        nik: data.nik,
+        password: passwordEncoded,
+      }),
+    );
+
+    window.alert("Register Success!");
+
+    setOpenLoginModal(true);
+    setOpenRegisterModal(false);
     reset();
     return;
   };
-
-  useEffect(() => {
-    console.log(userData);
-    window.localStorage.setItem("user-account", JSON.stringify(userData));
-  }, [userData]);
 
   return (
     <AuthLayout>
