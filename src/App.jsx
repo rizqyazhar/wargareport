@@ -21,6 +21,7 @@ import PrivacyDataPage from "./Pages/PrivacyDataPage";
 import SecurityPage from "./Pages/SecurityPage";
 import AdminLayout from "./layouts/AdminLayout";
 import EscalationDesk from "./Pages/admin/EscalationDesk";
+import SlaBenchmarks from "./Pages/admin/SlaBenchmarks";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to={"/admin/escalation-desk"} /> },
       { path: "escalation-desk", element: <EscalationDesk /> },
+      { path: "sla-benchmarks", element: <SlaBenchmarks /> },
     ],
   },
 ]);
