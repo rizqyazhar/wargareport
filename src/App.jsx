@@ -25,6 +25,7 @@ import SlaBenchmarks from "./Pages/admin/SlaBenchmarks";
 import Categories from "./Pages/admin/Categories";
 import Agencies from "./Pages/admin/Agencies";
 import OfficerAccountManages from "./Pages/admin/OfficerAccountManages";
+import Moderation from "./Pages/admin/Moderation";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,7 @@ const router = createBrowserRouter([
       { path: "categories", element: <Categories /> },
       { path: "agencies", element: <Agencies /> },
       { path: "officer-accounts", element: <OfficerAccountManages /> },
+      { path: "moderation", element: <Moderation /> },
     ],
   },
 ]);
