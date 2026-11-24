@@ -2,8 +2,6 @@ import { Link, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { FormContext } from "../contexts/FormContext";
-import { useContext, useEffect } from "react";
 
 const schema = yup.object({
   reportTitle: yup.string().required("Title harus diisi"),
@@ -20,7 +18,7 @@ const schema = yup.object({
 });
 
 export default function ReviewSendReportPage() {
-  const [formReport, setFormReport] = useContext(FormContext);
+  // const [formReport, setFormReport] = useContext(FormContext);
 
   const navigate = useNavigate();
 
@@ -42,8 +40,8 @@ export default function ReviewSendReportPage() {
     resolver: yupResolver(schema),
   });
 
-  const pushData = (data) => {
-    setFormReport((prev) => ({ ...prev, data }));
+  const pushData = () => {
+    // setFormReport((prev) => ({ ...prev, data }));
 
     reset();
     navigate("/report-receipt");

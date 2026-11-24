@@ -19,6 +19,8 @@ import UpdateProfilePage from "./Pages/UpdateProfilePage";
 import NotificationPreferencePage from "./Pages/NotificationPreferencePage";
 import PrivacyDataPage from "./Pages/PrivacyDataPage";
 import SecurityPage from "./Pages/SecurityPage";
+import AdminLayout from "./layouts/AdminLayout";
+import EscalationDesk from "./Pages/admin/EscalationDesk";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
       { path: "location", element: <LocationReportPage /> },
       { path: "proof", element: <ProofReportPage /> },
       { path: "review-send", element: <ReviewSendReportPage /> },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      { index: true, element: <Navigate to={"/admin/escalation-desk"} /> },
+      { path: "escalation-desk", element: <EscalationDesk /> },
     ],
   },
 ]);

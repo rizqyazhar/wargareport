@@ -6,7 +6,7 @@ export default function AdminLayout() {
   return (
     <>
       <NavbarAdmin />
-      <main className='min-h-[50dvh] px-7.5 md:px-10 lg:px-25 py-15 lg:pt-10 lg:pb-34 flex flex-col gap-5 bg-bg-secondary'>
+      <main className='min-h-[50dvh] px-7.5 md:px-10 lg:px-25 py-15 lg:pt-10 lg:pb-34 flex flex-col gap-6 bg-bg-secondary'>
         <div className='flex flex-col gap-2.5'>
           <span className='eyebrow-heading text-[11px]'>System Governance</span>
           <h1 className='title text-[35px]'>Civic Administration & Policies</h1>

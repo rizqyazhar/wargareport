@@ -1,13 +1,9 @@
-import { useContext } from "react";
 import CategoryInput from "../components/CategoryInput";
 import { categoryInputContent } from "../lib/data";
-import { FormContext } from "../contexts/FormContext";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 export default function TopicReportPage() {
-  const [formReport, setFormReport] = useContext(FormContext);
-
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,8 +13,8 @@ export default function TopicReportPage() {
 
     if (!categoryValue) return;
 
-    setFormReport((prev) => ({ ...prev, categoryValue }));
-    navigate("/add-report/location");
+    // setFormReport((prev) => ({ ...prev, categoryValue }));
+    // navigate("/add-report/location");
   };
 
   return (

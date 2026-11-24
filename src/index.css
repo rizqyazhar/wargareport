@@ -43,6 +43,10 @@
   --color-bg-closed: rgba(244, 239, 228, 1);
 }
 
+body {
+  position: relative;
+}
+
 @utility title {
   font-weight: 600;
   color: var(--color-font-primary);
@@ -145,6 +149,22 @@
   height: 12px;
   background-color: var(--color-bg-primary);
   mask: url("./assets/icon/location-icon.svg") no-repeat center;
+  mask-size: cover;
+}
+
+@utility white-shield-icon {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-font-quaternary);
+  mask: url("./assets/icon/shield-icon.svg") no-repeat center;
+  mask-size: cover;
+}
+
+@utility black-shield-icon {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-font-primary);
+  mask: url("./assets/icon/shield-icon.svg") no-repeat center;
   mask-size: cover;
 }
 
@@ -257,7 +277,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  padding: 6px 11px 6px 6px;
+  padding: 4px 10px;
   border-radius: 20px;
   border: 1px solid var(--color-border-secondary);
 }
@@ -976,7 +996,6 @@
     overflow-x: auto;
   }
 }
-
 table {
   min-width: 100%;
   display: table;
@@ -1016,7 +1035,8 @@ table > thead > tr th {
 table > tbody > tr:nth-child(even) {
   border-top: 1px solid var(--color-border-primary);
 }
-
+/* 
+  
 table > tbody > tr th:nth-child(1) {
   font-weight: 600;
   font-size: 13px;
@@ -1081,6 +1101,8 @@ table > tbody > tr td:nth-child(2) span:nth-child(2) {
   font-weight: 400;
   color: var(--color-font-tertiary);
 }
+
+*/
 
 table tbody tr:hover {
   background-color: var(--color-bg-submitted);
