@@ -71,16 +71,15 @@ export default function LoginModal(props) {
     );
     window.alert("Login success");
 
-    setOpenLoginModal((prev) => !prev);
-
     if (roleAccount === "Admin") {
       navigate("/admin/escalation-desk");
+      return;
+    } else {
+      navigate("/");
+      setOpenLoginModal((prev) => !prev);
+      reset();
+      return;
     }
-
-    navigate("/");
-
-    reset();
-    return;
   };
 
   return (
