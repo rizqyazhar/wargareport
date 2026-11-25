@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserLogin } from "../redux/slices/auth/login.slice.js";
+import { useNavigate } from "react-router";
 
 const schema = yup.object({
   email: yup.string().email("Email tidak valid").required("Email harus diisi"),
@@ -14,6 +15,8 @@ const schema = yup.object({
 
 export default function LoginModal(props) {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const reduxAccountsState = useSelector((state) => state.accounts);
 
@@ -51,6 +54,7 @@ export default function LoginModal(props) {
 
     const emailAccount = findAccount?.email;
     const passwordAccount = findAccount?.password;
+    const roleAccount = findAccount?.role;
 
     if (
       emailAccount !== data.email ||
@@ -59,10 +63,22 @@ export default function LoginModal(props) {
       return window.alert("Email or password is incorrect");
     }
 
-    dispatch(addUserLogin(emailAccount));
+    dispatch(
+      addUserLogin({
+        email: emailAccount,
+        role: roleAccount,
+      }),
+    );
     window.alert("Login success");
 
     setOpenLoginModal((prev) => !prev);
+
+    if (roleAccount === "Admin") {
+      navigate("/admin/escalation-desk");
+    }
+
+    navigate("/");
+
     reset();
     return;
   };

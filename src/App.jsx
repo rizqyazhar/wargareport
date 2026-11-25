@@ -28,6 +28,8 @@ import { Provider } from "react-redux";
 
 import reduxStore, { persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import CitizenProtectedRoute from "./layouts/CitizenProtectedRoute";
+import AdminProtectedRoute from "./layouts/AdminProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -52,23 +54,67 @@ const router = createBrowserRouter([
   },
   {
     path: "/report-receipt",
-    element: <ReportReceiptPage />,
+    element: (
+      <CitizenProtectedRoute>
+        <ReportReceiptPage />
+      </CitizenProtectedRoute>
+    ),
   },
   {
     path: "/notification",
-    element: <NotificationPage />,
+    element: (
+      <CitizenProtectedRoute>
+        <NotificationPage />
+      </CitizenProtectedRoute>
+    ),
   },
-  { path: "/profile/my-report", element: <MyReportPage /> },
-  { path: "/profile/update-profile", element: <UpdateProfilePage /> },
+  {
+    path: "/profile/my-report",
+    element: (
+      <CitizenProtectedRoute>
+        <MyReportPage />
+      </CitizenProtectedRoute>
+    ),
+  },
+  {
+    path: "/profile/update-profile",
+    element: (
+      <CitizenProtectedRoute>
+        <UpdateProfilePage />
+      </CitizenProtectedRoute>
+    ),
+  },
   {
     path: "/profile/notification-preference",
-    element: <NotificationPreferencePage />,
+    element: (
+      <CitizenProtectedRoute>
+        <NotificationPreferencePage />,
+      </CitizenProtectedRoute>
+    ),
   },
-  { path: "/profile/privacy-data", element: <PrivacyDataPage /> },
-  { path: "/profile/security", element: <SecurityPage /> },
+  {
+    path: "/profile/privacy-data",
+    element: (
+      <CitizenProtectedRoute>
+        <PrivacyDataPage />
+      </CitizenProtectedRoute>
+    ),
+  },
+  {
+    path: "/profile/security",
+    element: (
+      <CitizenProtectedRoute>
+        <SecurityPage />
+      </CitizenProtectedRoute>
+    ),
+  },
   {
     path: "/add-report",
-    element: <AddReportLayout />,
+    element: (
+      <CitizenProtectedRoute>
+        <AddReportLayout />
+      </CitizenProtectedRoute>
+    ),
     children: [
       { index: true, element: <Navigate to={"/add-report/topic"} /> },
       { path: "topic", element: <TopicReportPage /> },
@@ -79,7 +125,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: (
+      <AdminProtectedRoute>
+        <AdminLayout />
+      </AdminProtectedRoute>
+    ),
     children: [
       { index: true, element: <Navigate to={"/admin/escalation-desk"} /> },
       { path: "escalation-desk", element: <EscalationDesk /> },

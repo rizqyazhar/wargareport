@@ -288,9 +288,9 @@ body {
 }
 
 @utility user-info-toggle {
+  width: 160px;
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 8px;
   padding: 4px 10px;
